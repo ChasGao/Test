@@ -1,0 +1,31 @@
+package SystemClass;
+
+public class test {
+
+	private static void change(String str) {
+	String b=new String("B");
+		str = b;
+	}
+
+	public static void main(String[] args) {
+		String str = "a";
+		change(str);
+		System.out.println(str);		
+		
+		int i=1;i=i++;//i++是在一个先使用后加1,即先使用i的值,后让i+1
+		System.out.println(i);
+		int j=1;j=++j;//++j则是先加1后使用,即先让j+1后再使用j的新值
+		System.out.println(j);
+		print();
+	}
+
+	public static void print(){
+		if(System.out.printf("a")==null){
+			System.out.println("c");
+		}else {
+			System.out.println("b");
+		}
+		
+	}
+	
+}

@@ -1,0 +1,87 @@
+下面是精心整理的Java数组操作的10大方法，大部分代码都来自Stack Overflow。
+
+0、定义一个Java数组
+
+String[] aArray = new String[5];
+String[] bArray = {"a","b","c", "d", "e"};
+String[] cArray = new String[]{"a","b","c","d","e"};
+第一种是定义了一个数组，并且指定了数组的长度，我们这里称它为动态定义。
+
+第二种和第三种在分配内存空间的同时还初始化了值。
+
+1、打印Java数组中的元素
+
+int[] intArray = { 1, 2, 3, 4, 5 };
+String intArrayString = Arrays.toString(intArray);
+
+// print directly will print reference value
+System.out.println(intArray);
+// [I@7150bd4d
+
+System.out.println(intArrayString);
+// [1, 2, 3, 4, 5]
+这里的重点是说明了Java中数组的引用和值得区别，第三行直接打印intArray，输出的是乱码，因为intArray仅仅是一个地址引用。第4行输出的则是真正的数组值，因为它经过了Arrays.toString()的转化。对Java初学者来说，引用和值仍需重视。
+
+2、从Array中创建ArrayList
+
+String[] stringArray = { "a", "b", "c", "d", "e" };
+ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(stringArray));
+System.out.println(arrayList);
+// [a, b, c, d, e]
+为什么要将Array转换成ArrayList呢？可能是因为ArrayList是动态链表，我们可以更方便地对ArrayList进行增删改，我们并不需要循环Array将每一个元素加入到ArrayList中，用以上的代码即可简单实现转换。
+
+3、检查数组中是否包含某一个值
+
+String[] stringArray = { "a", "b", "c", "d", "e" };
+boolean b = Arrays.asList(stringArray).contains("a");
+System.out.println(b);
+// true
+先使用Arrays.asList()将Array转换成List<String>，这样就可以用动态链表的contains函数来判断元素是否包含在链表中。
+
+4、连接两个数组
+
+int[] intArray = { 1, 2, 3, 4, 5 };
+int[] intArray2 = { 6, 7, 8, 9, 10 };
+// Apache Commons Lang library
+int[] combinedIntArray = ArrayUtils.addAll(intArray, intArray2);
+ArrayUtils是Apache提供的数组处理类库，其addAll方法可以很方便地将两个数组连接成一个数组。
+
+5、声明一个数组内链
+
+method(new String[]{"a", "b", "c", "d", "e"});
+6、将数组中的元素以字符串的形式输出
+
+// containing the provided list of elements
+// Apache common lang
+String j = StringUtils.join(new String[] { "a", "b", "c" }, ", ");
+System.out.println(j);
+// a, b, c
+同样利用StringUtils中的join方法，可以将数组中的元素以一个字符串的形式输出。
+
+7、将Array转化成Set集合
+
+Set<String> set = new HashSet<String>(Arrays.asList(stringArray));
+System.out.println(set);
+//[d, e, b, c, a]
+在Java中使用Set，可以方便地将需要的类型以集合类型保存在一个变量中，主要应用在显示列表。同样可以先将Array转换成List，然后再将List转换成Set。
+
+8、数组翻转
+
+int[] intArray = { 1, 2, 3, 4, 5 };
+ArrayUtils.reverse(intArray);
+System.out.println(Arrays.toString(intArray));
+//[5, 4, 3, 2, 1]
+依然用到了万能的ArrayUtils。
+
+9、从数组中移除一个元素
+
+int[] intArray = { 1, 2, 3, 4, 5 };
+int[] removed = ArrayUtils.removeElement(intArray, 3);//create a new array
+System.out.println(Arrays.toString(removed));
+再补充一个：将一个int值转化成byte数组
+
+byte[] bytes = ByteBuffer.allocate(4).putInt(8).array();
+
+for (byte t : bytes) {
+System.out.format("0x%x ", t);
+}

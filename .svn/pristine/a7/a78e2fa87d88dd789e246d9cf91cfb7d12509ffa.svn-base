@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<book>
+    <name>book</name>
+    <author>scoot</author>
+    <price>100.0</price>
+    <allindexname>
+        <indexname>第一章</indexname>
+        <indexname>第二章</indexname>
+        <indexname>第三章</indexname>
+    </allindexname>
+    <pubData>2015-05-20 18:03:05</pubData>
+</book>

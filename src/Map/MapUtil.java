@@ -1,0 +1,42 @@
+package Map;
+
+import java.util.Iterator;
+import java.util.Map;
+
+public class MapUtil {
+
+	public  static void main(String []  args){
+		
+		Map<Thread, StackTraceElement[]> stackTraceMap=Thread.getAllStackTraces();
+		
+		for(Map.Entry<Thread, StackTraceElement[]> stackTrace:stackTraceMap.entrySet()){
+			Thread thread=(Thread)stackTrace.getKey();
+			StackTraceElement[] stack=stackTrace.getValue();
+			if(thread.equals(Thread.currentThread())){
+				continue;
+			}
+			//out.print();
+			System.out.println("线程名称："+thread.getName()+" "+thread.getId()+thread.getState());
+			for (StackTraceElement stackTraceElement : stack) {
+				System.out.println(stackTraceElement);
+			}
+		}
+		/*Iterator<Map.Entry<Thread, StackTraceElement[]>> entries=stackTraceMap.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry<Thread, StackTraceElement[]> entry  = entries.next();
+			Thread thread=(Thread)entry.getKey();
+			StackTraceElement[] stackTraceElements=(StackTraceElement[])entry.getValue();
+			StackTraceElement[] stEs=thread.getStackTrace();
+			System.out.println("线程名："+thread.getName()+"   state:"+thread.getState() +thread.getStackTrace());
+			for (StackTraceElement stackTraceElement : stackTraceElements) {
+				System.out.println("stackTraceElement:"+stackTraceElement);
+			}
+			
+		}*/
+		
+		
+		
+		
+	}
+	
+}

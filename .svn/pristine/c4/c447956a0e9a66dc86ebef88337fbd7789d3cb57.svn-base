@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+  <book type="science">
+    <name>Java</name>
+    <price>100</price>
+  </book>
+  <book type="science">
+    <name>Oracle</name>
+    <price>200</price>
+  </book>
+</root>

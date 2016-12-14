@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<test:root xmlns:test="http://schemas.ilog.com/JRules/1.1/Translation" xmlns:test2="http://schemas.ilog.com/JRules/1.2/Translation">
+  <book  type="science">
+    <name><![CDATA[Java]]></name>
+    <price>100</price>
+  </book>
+  <book type="science">
+    <name>Oracle</name>
+    <price>200</price>
+  </book>
+</test:root>
