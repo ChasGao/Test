@@ -3,7 +3,8 @@ package lang;
 public class StringTest {
 
 	public static void main(String[] args) {
-		stringIndexTest();
+		//stringIndexTest();
+		System.out.println(strReverse("a2bcd1"));
 	}
 
 	public static void stringIndexTest(){
@@ -13,4 +14,11 @@ public class StringTest {
 		System.out.println(str.length());
 		
 	}
+	
+	public static String strReverse(String string){
+		StringBuffer stringBuffer=new StringBuffer(string);
+		return stringBuffer.reverse().toString();
+		
+	}
+	
 }

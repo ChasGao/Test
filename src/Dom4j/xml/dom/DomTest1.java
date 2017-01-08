@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class DomTest1
@@ -49,6 +50,15 @@ public class DomTest1
 			System.out.println("email:" + content);
 			
 			System.out.println("--------------------------------------");
+		}
+		NodeList namelist = document.getElementsByTagName("NAME");
+		
+		for (int i = 0; i < namelist.getLength(); i++) {
+			//Node node = (Node)namelist.item(i);
+			//String content=node.getTextContent();
+			Element nameElement=(Element)namelist.item(i);
+			String content=nameElement.getFirstChild().getNodeValue();
+			System.out.println(content);
 		}
 	}
 }
