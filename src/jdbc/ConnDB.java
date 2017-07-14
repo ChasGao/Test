@@ -97,5 +97,106 @@ public class ConnDB {
 		}
 		
 	}
+	
+	/**
+	 * insert操作
+	 * @param user
+	 * @return
+	 */
+	public int insert(User user) {
+//		Connection con=getConnection4Oracle();
+		Connection con=getConnection4MySQL();
+		int i= 0;
+	    PreparedStatement pre = null;// 创建预编译语句对象，一般都是用这个而不用Statement
+		//以后要是insert多条记录，在sql结尾加上多个小括号，sql也不要参数了。
+		String sql = "insert into user (login_name ,name)  values (? ,? ,?)";
+		try {
+			System.out.println("开始insert");
+			pre = con.prepareStatement(sql);
+			pre.setString(1, user.getLoginName());
+			pre.setString(2, user.getName());
+//			i= pre.executeUpdate(sql);
+			i= pre.executeUpdate();
+			System.out.println("insert操作结束。共有 插入记录条数 "+ i);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pre!= null) pre.close();
+				if (con!= null) con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return i;
+	}
+	
+	/**
+	 * update操作
+	 * @param u
+	 * @return
+	 */
+	public int update(User user){
+//		Connection con=getConnection4Oracle();
+		Connection con=getConnection4MySQL();
+		int i= 0;
+	    PreparedStatement pre = null;// 创建预编译语句对象，一般都是用这个而不用Statement
+		String sql = "insert user set login_name = ? and name = ? where id = ?";
+		try {
+			System.out.println("开始update");
+			pre = con.prepareStatement(sql);
+			pre.setString(1, user.getLoginName());
+			pre.setString(2, user.getName());
+			pre.setInt(3, user.getId());
+			i= pre.executeUpdate();
+			System.out.println("update操作结束。共有更新记录条数 "+ i);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pre!= null) pre.close();
+				if (con!= null) con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return i;
+	}
 
+	/**
+	 * delete操作
+	 * @param user
+	 * @return
+	 */
+	private int delete(User user){
+//		Connection con=getConnection4Oracle();
+		Connection con=getConnection4MySQL();
+		int i= 0;
+	    PreparedStatement pre = null;// 创建预编译语句对象，一般都是用这个而不用Statement
+		String sql = "delete from user  where id = ?";
+		try {
+			System.out.println("开始delete");
+			pre = con.prepareStatement(sql);
+			pre.setInt(1, user.getId());
+			i= pre.executeUpdate();
+			System.out.println("delete操作结束。共有删除记录条数 "+ i);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pre!= null) pre.close();
+				if (con!= null) con.close();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return i;
+	}
+			
+	
+	
+	
 }
