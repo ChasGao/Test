@@ -31,9 +31,12 @@ public class ConnDB {
 		try {
 			System.out.println("开始连接oracle");
 			Class.forName("oracle.jdbc.driver.OracleDriver");// 加载Oracle驱动程序
-			String url="jdbc:oracle:thin:@127.0.0.1:1521:orcl";
-			String user="";
-			String password="";
+//			String url="jdbc:oracle:thin:@10.5.9.62:1521:ORCL";//我本地数据库地址
+//			String user="scott";
+//			String password="tiger";
+			String url="jdbc:oracle:thin:@10.1.45.52:1521:test52";
+			String user="lisro";
+			String password="lisro";
 			con=DriverManager.getConnection(url,user,password);
 			System.out.println("连接oracle成功");
 		} catch (Exception e) {
@@ -64,23 +67,22 @@ public class ConnDB {
 	 * 
 	 */
 	public void query(){
-//		Connection con=getConnection4Oracle();
-		Connection con=getConnection4MySQL();
+		Connection con=getConnection4Oracle();
+//		Connection con=getConnection4MySQL();
 	    PreparedStatement pre = null;// 创建预编译语句对象，一般都是用这个而不用Statement
 	    ResultSet result = null;// 创建一个结果集对象
-	    
-		String sql="select  * from user where  id = ?";
+		String sql="select  * from lacom where  trim(agentcom) = ?";
 		
 		try {
 			System.out.println("开始查询");
 			pre=con.prepareStatement(sql);//使用预编译
 			//sql参数赋值
-			pre.setInt(1, 1);
+			pre.setString(1, "010707050003");
 			result = pre.executeQuery();
 			while(result.next()){
-				int id=result.getInt("id");
+				String agentcom=result.getString("agentcom");
 				String name=result.getString("name");
-				System.out.println("name:"+ name);
+				System.out.println("agent:"+agentcom+"name:"+ name);
 			}
 			System.out.println("查询结束");
 		} catch (SQLException e) {
