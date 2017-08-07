@@ -29,5 +29,21 @@ public class TestSystem
 		props.store(new FileOutputStream("props.txt") , "System Properties");
 		//输出特定的系统属性
 		System.out.println(System.getProperty("os.name"));
+		timeTest();
 	}
+	/**
+	 * nanoTime()返回数字单位是纳秒，
+	 * currentTimeMillis()返回值单位是毫秒，
+	 * 两单位相差6个数量级
+	 */
+	private static void timeTest() {
+		long startTime=System.nanoTime();
+		System.out.println("dsdsds");
+		long endTime=System.nanoTime();
+		long estimatedTime = endTime - startTime;
+		System.err.println(startTime);
+		System.err.println(endTime);
+		System.err.println(estimatedTime);
+	}
+	
 }
